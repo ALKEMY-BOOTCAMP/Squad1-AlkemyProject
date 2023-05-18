@@ -1,0 +1,19 @@
+COMO desarrollador 
+QUIERO agregar la entidad Servicio
+PARA representar en la implementación la estructura de datos
+
+Criterios de aceptación: 
+Nombre del modelo: Servicio. 
+Los campos son:
+
+nombre: texto
+
+descripcion: texto
+
+precio: integer
+
+activo: boolean (default=True)
+
+Generar el archivo migration (command makemigrations)
+
+Aplicar el archivo migration (command migrate)
