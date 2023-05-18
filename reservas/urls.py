@@ -4,5 +4,6 @@ from django.urls import path
 app_name = 'reservas'
 
 url_patters = [
-   # path()
+   #URLS DEL MODELO EMPLEADO
+   path('/empleados/activar/<int: id>', activar_empleado, name="activar_empleado"),
 ]
