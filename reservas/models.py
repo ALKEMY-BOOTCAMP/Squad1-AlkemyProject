@@ -10,7 +10,7 @@ class Servicio(models.Model):
     activo = models.BooleanField(default=True)
     
     def __str__(self):
-        return f"{self.nombre.upper()}, Precio {self.precio}| [ {self.activo} ] "
+        return f"Servicio: {self.nombre.upper()}, Precio: ${self.precio} | [ {self.activo} ] "
 
 class Meta:
     ordering = ['nombre','precio','activo']
