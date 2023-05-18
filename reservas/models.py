@@ -14,3 +14,13 @@ class Servicio(models.Model):
 
 class Meta:
     ordering = ['nombre','precio','activo']
+    
+    
+class Empleado(models.Model):
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    puesto = models.CharField(max_length=100)
+    # Otros campos que necesites para el modelo Empleado
+    
+    def __str__(self):
+        return f"{self.nombre} {self.apellido}"

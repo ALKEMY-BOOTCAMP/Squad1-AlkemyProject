@@ -1,8 +1,9 @@
 from django.urls import path
-#from .views import
+from . import views
 
 app_name = 'reservas'
 
-url_patters = [
-   # path()
+urlpatterns = [
+    # Otras URLs de tu proyecto...
+    path('empleados/modificar/<int:id>/', views.actualizar_empleado, name='actualizar_empleado'),
 ]
