@@ -12,6 +12,14 @@ def activar_empleado(request,id):
     
     print("Activado")
     
+#Funcion que por busqueda de id desactiva un empleado y muestra un mensaje por ahora
+def desactivar_empleado(request,id):
+    empleado = get_object_or_404(Empleado, id = pk)
+    empleado.activo = False
+    empleado.save()
+    
+    print("Desactivado")
+    
 
 #View para registrar empleado que pide que el metodo del request sea POST
 def registrar_empleado(request):
