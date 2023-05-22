@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Cliente
+from .models import Cliente, ReservaServicio, Coordinador
 
 # Register your models here.
 
@@ -27,3 +27,20 @@ class ReservaServicioAdmin(admin.ModelAdmin):
     
     # list_filter: Campos por los que se puede filtrar objetos en la lista
     #list_filter = ('coordinador', 'cliente', 'empleado','servicio')
+    
+# Registrar el modelo ReservaServicio junto con la configuración del administrador en el panel de administración
+admin.site.register(ReservaServicio, ReservaServicioAdmin)
+    
+class CoordinadorAdmin(admin.Admin):
+    
+    #list_display: Campos para mostrar en la lista de objetos del modelo
+    list_display = ('activo','fecha_alta', 'apellido', 'nombre', 'numero_documento')
+    
+    #list_search: Campos los que se puede buscar en la lista de objetos del modelo
+    list_search = ('nombre', 'apellido')
+    
+    # list_filter: Campos por los que se puede filtrar objetos en la lista
+    list_filter = ('activo')
+    
+# Registrar el modelo Coordinador junto con la configuración del administrador en el panel de administración
+admin.site.register(Coordinador, CoordinadorAdmin)
