@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+{{titulo}}
+{% endblock titulo %}
+
+{% block contenido %}
+<h4>Registro de Empleados:</h4>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Actualizar Empleado</title>
+</head>
+<body>
+    <h1>Actualizar Empleado</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar cambios">
+    </form>
+</body>
+</html>
+
+
+{% endblock contenido %}

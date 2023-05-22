@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block contenido %}
+{% for empleado in empleados  %}
+<p>{{empleado.apellido}} {{empleado.nombre}} {{empleado.numero_de_legajo}}</p>
+
+{% endfor %}
+{% endblock contenido %}
