@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    {{ titulo }}
+{% endblock titulo %}
+
+{% block contenido %}
+    {% for empleado in empleados %}
+    <div class="alert alert-primary" role="alert">
+    {{empleado.activo}} {{empleado.apellido}} {{empleado.nombre}}
+    </div>
+    <div class="alert alert-success" role="alert">
+        {{empleado.numero_legajo}}
+    </div>
+
+    {% endfor %}
+
+{% endblock contenido %}

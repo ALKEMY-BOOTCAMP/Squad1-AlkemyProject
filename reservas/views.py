@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.http import HttpResponse
 from .forms import EmpleadosForm
 from .models import Empleado
@@ -19,3 +19,9 @@ def empleados_form_view(request, pk):
         form = EmpleadosForm()  # Crear una instancia vacía del formulario EmpleadosForm si no se envió ningún formulario
     
     return render(request, 'empleados/empleados_form.html', {'form': form})  # Renderizar el formulario en la plantilla 'empleados/empleados_form.html'
+
+def empleados_listado(request):
+    empleados = empleados.object.All()
+    
+    return render(request, 'listar_empleados.html', 
+                {'titulo': 'Lista De Emplelados','empleados': empleados})
