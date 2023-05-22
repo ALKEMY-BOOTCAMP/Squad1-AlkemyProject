@@ -16,11 +16,12 @@ class Meta:
     ordering = ['nombre','precio','activo']
     
     
+##Modelo Empleado
 class Empleado(models.Model):
-    nombre = models.CharField(max_length=100)
-    apellido = models.CharField(max_length=100)
-    puesto = models.CharField(max_length=100)
-    # Otros campos que necesites para el modelo Empleado
+    apellido = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
+    numero_de_legajo = models.PositiveIntegerField()
+    activo = models.BooleanField(default=True)
     
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
