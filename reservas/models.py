@@ -17,7 +17,7 @@ class Cliente(models.Model):
     # de un cliente, así como cómo se ordenan las instancias de cliente por defecto en consultas de base de datos.
     class Meta:
         ordering = ['activo', 'apellido','nombre']
-  
+    
 # Modelo que representa la reserva de un servicio      
 class ReservaServicio(models.Model):
     fecha_creacion = models.DateTimeField(default= datetime.now())
@@ -36,3 +36,16 @@ class ReservaServicio(models.Model):
     # de una reserva de servicio, así como cómo se ordenan las instancias de la reserva por defecto en consultas de base de datos.
     class Meta:
         ordering = ['fecha_creacion', 'cliente', 'precio']
+        
+class Coordinador(models.Model):
+    nombre = models.CharField(max_length=30, null=False, blank=False)
+    apellido = models.CharField(max_length=30, null=False, blank=False)
+    numero_documento = models.IntegerField(blank=False, null=False)
+    fecha_alta = models.DateTimeField(default=datetime.today())
+    activo = models.BooleanField(default=True)
+    
+    def __str__(self):
+        return f'Coordinador: {self.activo}, {self.apellido}, {self.nombre}, {self.numero_documento}, {self.fecha_alta}'
+    
+    class Meta:
+        ordering = ['activo', 'apellido', 'numero_documento']
