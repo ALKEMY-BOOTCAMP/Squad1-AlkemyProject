@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    {{ titulo }}
+{{ titulo }}
 {% endblock titulo %}
 
 {% block contenido %}
-    {% for empleado in empleados %}
-    <div class="alert alert-primary" role="alert">
-    {{empleado.activo}} {{empleado.apellido}} {{empleado.nombre}}
-    </div>
-    <div class="alert alert-success" role="alert">
-        {{empleado.numero_legajo}}
-    </div>
 
-    {% endfor %}
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Número de Legajo</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Activo</th>
+        </tr>
+    </thead>
+    {% for empleado in empleados %}
+    <tbody>
+        <tr>
+            <th scope="row">{{empleado.numero_legajo}}</th>
+            <td>{{empleado.apellido}}</td>
+            <td>{{empleado.nombre}}</td>
+            <td>{{empleado.activo}}</td>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
 
 {% endblock contenido %}
