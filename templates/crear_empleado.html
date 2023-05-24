@@ -4,7 +4,8 @@
     {% csrf_token %}
     {{ form.nombre.label_tag }} {{ form.nombre }}
     {{ form.apellido.label_tag }} {{ form.apellido }}
-    {{ form.numero_legajo.label_tag }} {{ form.numero_legajo }}
+    {{ form.numero_de_legajo.label_tag }} {{ form.numero_de_legajo }}
+    {{ form.activo.label_tag }} {{ form.activo }}
     <input type="submit" value="Guardar">
 </form>
 {% endblock contenido %}
