@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.nombre.label_tag }} {{ form.nombre }}
+    {{ form.apellido.label_tag }} {{ form.apellido }}
+    {{ form.numero_documento.label_tag }} {{ form.numero_documento }}
+    {{ form.fecha_alta.label_tag }} {{ form.fecha_alta }}
+    {{ form.activo.label_tag }} {{ form.activo }}
+    <input type="submit" value="Guardar">
+</form>
+{% endblock contenido %}

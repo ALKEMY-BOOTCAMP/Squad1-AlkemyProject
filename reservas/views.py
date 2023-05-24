@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 , redirect
 from .models import Empleado
-from .forms import EmpleadoForm
+from .forms import EmpleadoForm, CoordinadorForm
 
 
 def listar_empleados(request):
@@ -56,3 +56,31 @@ def borrar_empleado(request, pk):
     empleado_a_borrar.delete()
     return redirect('/empleados/')
 
+
+def activar_empleado(request,pk):
+    empleado_a_activar = get_object_or_404(Empleado, pk=pk)
+    empleado_a_activar .delete()
+    return redirect('/empleados/')
+
+def registrar_coordinador(request):
+    if request.method == 'POST':
+        form = CoordinadorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nombre_de_la_vista_principal')
+    else:
+        form = CoordinadorForm()
+    
+    return render(request, 'registrar_coordinador.html', {'form': form})
+
+
+def registrar_coordinador(request):
+    if request.method == 'POST':
+        form = CoordinadorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nombre_de_la_vista_principal')
+    else:
+        form = CoordinadorForm()
+    
+    return render(request, 'registrar_coordinador.html', {'form': form})
