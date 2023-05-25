@@ -40,5 +40,6 @@ def empleados_nuevo(request):
     else:
         form = EmpleadosForm()  # Crear una instancia vacía del formulario EmpleadosForm si la solicitud no es de tipo POST
     
-    return render(request, 'empleados_nuevo.html', {'form': form})
+    return render(request, 'empleados_nuevo.html', {'form': form, 'titulo': 'Registro de Coordinadores'})
     # Renderizar la plantilla 'empleados_nuevo.html', pasando el formulario como contexto
+    

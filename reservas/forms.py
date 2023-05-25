@@ -30,3 +30,29 @@ class EmpleadosForm(forms.ModelForm):
             'apellido': forms.TextInput(attrs={'class': 'form-control'}),
             'numero_legajo' : forms.IntegerField(attrs={'class': 'form-control'}),
         }
+        
+class CoordinadorForm(forms.ModelForm):
+    
+    class Meta:
+        model = Coordinador
+    
+        fields = [
+            'nombre',
+            'apellido',
+            'numero_documento',
+            'activo',
+        ]
+    
+        labels = {
+            'Nombre': 'nombre',
+            'Apellido': 'apellido',
+            'DNI': 'numero_documento',
+            'Acctivo': 'acctivo',
+        }
+    
+        widgets = {
+            'nombre' : forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'numero_documento' : forms.IntegerField(attrs={'class': 'form-control'}),
+            'activo': forms.BooleanField(attrs={'class': 'form-control'})
+        }
