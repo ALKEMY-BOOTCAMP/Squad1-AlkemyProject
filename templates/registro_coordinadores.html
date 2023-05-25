@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Numero de documento</th>
+      <th scope="col">Fecha de alta</th>
+      <th scope="col">Activo</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for coordinador in coordinadores  %}
+
+
+      <tr>
+        <th scope="row">{{coordinador.pk}}</th>
+        <td>{{coordinador.apellido}}</td>
+        <td>{{coordinador.nombre}}</td>
+        <td>{{coordinador.numero_documento}}</td>
+        <td>{{coordinador.fecha_alta}}</td>
+        <td>{{coordinador.activo}}</td>
+        <td>
+            <a href="{% url 'reservas:registrar_coordinador'%}" style="margin:10px; text-decoration: none;">Nuevo</a>
+            <td>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Activar
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      Desactivar
+                    </label>
+            </div>
+        </td>
+  
+        </td>
+      </tr>
+   {% endfor %}
+</tbody>
+</table>
+{% endblock contenido %}

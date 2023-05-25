@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404 , redirect
-from .models import Empleado
+from .models import Empleado, Coordinador
 from .forms import EmpleadoForm, CoordinadorForm
 
 
@@ -62,25 +62,33 @@ def activar_empleado(request,pk):
     empleado_a_activar .delete()
     return redirect('/empleados/')
 
+
 def registrar_coordinador(request):
     if request.method == 'POST':
+        # Si el formulario fue enviado (POST request), procesarlo
         form = CoordinadorForm(request.POST)
         if form.is_valid():
+            # El formulario es válido, procesar los datos
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            numero_documento = form.cleaned_data['numero_documento']
+            activo = form.cleaned_data['activo']
             form.save()
-            return redirect('nombre_de_la_vista_principal')
+            return redirect('/empleados/coordinadores/')
+            # Aquí puedes realizar acciones con los datos, como guardarlos en la base de datos
+
+            # Redirigir a una página de éxito o hacer otra cosa después de procesar el formulario
     else:
+        # Si el formulario no fue enviado (GET request), crear una instancia del formulario vacío
         form = CoordinadorForm()
     
     return render(request, 'registrar_coordinador.html', {'form': form})
 
-
-def registrar_coordinador(request):
-    if request.method == 'POST':
-        form = CoordinadorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('nombre_de_la_vista_principal')
-    else:
-        form = CoordinadorForm()
+def listar_coordinadores(request):
+    lista_coordinadores = Coordinador.objects.all()
     
-    return render(request, 'registrar_coordinador.html', {'form': form})
+    return render(request, 'registro_coordinadores.html', {
+        'titulo':'LISTADO DE CORDINADORES',
+        'coordinadores': lista_coordinadores,
+        
+    })
