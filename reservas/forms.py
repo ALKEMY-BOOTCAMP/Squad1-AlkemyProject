@@ -56,3 +56,25 @@ class CoordinadorForm(forms.ModelForm):
             'numero_documento' : forms.IntegerField(attrs={'class': 'form-control'}),
             'activo': forms.BooleanField(attrs={'class': 'form-control'})
         }
+        
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        
+        fields = [
+            'nombre',
+            'apellido',
+            'activo',
+        ]
+        
+        labels = {
+            'Nombre': 'nombre',
+            'Apellido': 'apellido',
+            'Activo': 'activo',
+        }
+        
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido': forms.TextInput(attrs={'class': 'form-control'}),
+            'activo': forms.BooleanField(attrs={'class': 'form-control'}),
+        }
