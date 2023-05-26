@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Numero de documento</th>
+      <th scope="col">Fecha de alta</th>
+      <th scope="col">Activo</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for coordinador in coordinadores  %}
+
+
+      <tr>
+        <th scope="row">{{coordinador.pk}}</th>
+        <td>{{coordinador.apellido}}</td>
+        <td>{{coordinador.nombre}}</td>
+        <td>{{coordinador.numero_documento}}</td>
+        <td>{{coordinador.fecha_alta}}</td>
+        <td>{{coordinador.activo}}</td>
+        <td>
+            <a href="{% url 'reservas:registrar_coordinador'%}" style="margin:10px; text-decoration: none;">Nuevo</a>
+            <td>
+              <form action="{% url 'reservas:activar_desactivar_coordinador' coordinador.pk %}" method="post">
+                {% csrf_token %}
+                <label for="id_activo_{{ coordinador.pk }}">Activo</label>
+                <input type="checkbox" id="id_activo_{{ coordinador.pk }}" name="activo" {% if coordinador.activo %}checked{% endif %}>
+                <input type="submit" value="Hecho">
+              </form>
+              
+            </div>
+        </td>
+  
+        </td>
+      </tr>
+   {% endfor %}
+</tbody>
+</table>
+{% endblock contenido %}
