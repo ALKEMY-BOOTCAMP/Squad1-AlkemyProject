@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block contenido %}
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Activo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cliente in clientes  %}
+
+
+      <tr>
+        <th scope="row">{{cliente.pk}}</th>
+        <td>{{cliente.apellido}}</td>
+        <td>{{cliente.nombre}}</td>
+        <td>{{cliente.activo}}</td>
+        <td>
+            <a href="{% url 'reservas:crear_cliente'%}" style="margin:10px; text-decoration: none;">Nuevo</a>
+        </td>
+      </tr>
+   {% endfor %}
+</tbody>
+</table>
+{% endblock contenido %}

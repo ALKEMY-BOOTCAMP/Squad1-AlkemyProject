@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 , redirect
-from .models import Empleado, Coordinador
-from .forms import EmpleadoForm, CoordinadorForm
+from .models import Empleado, Coordinador, Cliente
+from .forms import EmpleadoForm, CoordinadorForm, ClienteForm
 
 
 def listar_empleados(request):
@@ -109,3 +109,35 @@ def activar_desactivar_coordinador(request, pk):
         return redirect('/empleados/coordinadores/')  # Redirecciona a la página deseada después de guardar
 
     return render(request, 'registro_coordinadores.html', {'coordinador': coordinador})
+
+#CLIENTES:
+
+
+def listar_clientes(request):
+    listar_clientes = Cliente.objects.all()
+    
+    return render(request, 'registro_clientes.html', {
+        'titulo':'LISTADO DE CLIENTES',
+        'clientes': listar_clientes,
+        
+    })
+    
+def crear_cliente(request):
+    if request.method == 'POST':
+        # Si el formulario fue enviado (POST request), procesarlo
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            # El formulario es válido, procesar los datos
+            nombre = form.cleaned_data['nombre']
+            apellido = form.cleaned_data['apellido']
+            activo = form.cleaned_data['activo']
+            form.save()
+            return redirect('reservas:listar_clientes')
+            # Aquí puedes realizar acciones con los datos, como guardarlos en la base de datos
+
+            # Redirigir a una página de éxito o hacer otra cosa después de procesar el formulario
+    else:
+        # Si el formulario no fue enviado (GET request), crear una instancia del formulario vacío
+        form = ClienteForm()
+    
+    return render(request, 'crear_cliente.html', {'form': form})

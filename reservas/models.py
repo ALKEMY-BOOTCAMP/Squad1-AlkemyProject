@@ -15,7 +15,7 @@ class Cliente(models.Model):
     # Clase que proporciona información útil sobre cómo se almacenan y representan los datos
     # de un cliente, así como cómo se ordenan las instancias de cliente por defecto en consultas de base de datos.
     class Meta:
-        ordering = ['activo', 'apellido', 'nombre']
+        ordering = ['apellido','activo', 'nombre']
 
 
 class Servicio(models.Model):
