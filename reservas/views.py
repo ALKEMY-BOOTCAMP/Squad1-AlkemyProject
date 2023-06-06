@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404 , redirect
 from .models import Empleado, Coordinador, Cliente
-from .forms import EmpleadoForm, CoordinadorForm, ClienteForm
+from .forms import EmpleadoForm, CoordinadorForm, ClienteForm, ServicioForm
 
 
 def listar_empleados(request):
@@ -141,3 +141,27 @@ def crear_cliente(request):
         form = ClienteForm()
     
     return render(request, 'crear_cliente.html', {'form': form})
+
+
+
+def crear_servicio(request):
+    
+    if request.method == 'POST':
+        # Si el formulario fue enviado (POST request), procesarlo
+        form = ServicioForm(request.POST)
+        if form.is_valid():
+            # El formulario es válido, procesar los datos
+            nombre = form.cleaned_data['nombre']
+            descripcion = form.cleaned_data['descripcion']
+            precio = form.cleaned_data['precio']
+            activo = form.cleaned_data['activo']
+            form.save()
+            return redirect('/listar_servicios/')
+            # Aquí puedes realizar acciones con los datos, como guardarlos en la base de datos
+
+            # Redirigir a una página de éxito o hacer otra cosa después de procesar el formulario
+    else:
+        # Si el formulario no fue enviado (GET request), crear una instancia del formulario vacío
+        form = ServicioForm()
+    
+    return render(request, 'crear_servicio.html', {'form': form})
