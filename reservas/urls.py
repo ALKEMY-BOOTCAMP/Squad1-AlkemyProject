@@ -1,5 +1,5 @@
 from django.urls import path
-from reservas.views import actualizar_empleado, listar_empleados, crear_empleado, borrar_empleado, registrar_coordinador, listar_coordinadores, activar_desactivar_coordinador, crear_cliente,listar_clientes 
+from reservas.views import actualizar_empleado, listar_empleados, crear_empleado, borrar_empleado, registrar_coordinador, listar_coordinadores, activar_desactivar_coordinador, crear_cliente,listar_clientes, crear_servicio, listar_servicios, borrar_servicio
 
 
 app_name = 'reservas'
@@ -19,5 +19,13 @@ urlpatterns = [
 
     path('clientes/', listar_clientes, name='listar_clientes'),
     path('clientes/nuevo/', crear_cliente, name='crear_cliente'),
+    
+    path('servicios/', listar_servicios, name='listar_servicios'),
+    path('servicios/nuevo/', crear_servicio, name='crear_servicio'),
+    path('borrar-servicio/<int:pk>', borrar_servicio, name='borrar_servicio'),
+    
+    
+    
+    
 
 ]

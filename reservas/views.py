@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404 , redirect
-from .models import Empleado, Coordinador, Cliente
+from .models import Empleado, Coordinador, Cliente, Servicio
 from .forms import EmpleadoForm, CoordinadorForm, ClienteForm, ServicioForm
 
 
@@ -142,10 +142,16 @@ def crear_cliente(request):
     
     return render(request, 'crear_cliente.html', {'form': form})
 
-
+def listar_servicios(request):
+    lista_servicio = Servicio.objects.all()
+    
+    return render(request, 'registro_servicios.html', {
+        'titulo':'LISTADO DE SERVICIOS',
+        'servicios': lista_servicio,
+        
+    })
 
 def crear_servicio(request):
-    
     if request.method == 'POST':
         # Si el formulario fue enviado (POST request), procesarlo
         form = ServicioForm(request.POST)
@@ -156,7 +162,7 @@ def crear_servicio(request):
             precio = form.cleaned_data['precio']
             activo = form.cleaned_data['activo']
             form.save()
-            return redirect('/listar_servicios/')
+            return redirect('/empleados/servicios/')
             # Aquí puedes realizar acciones con los datos, como guardarlos en la base de datos
 
             # Redirigir a una página de éxito o hacer otra cosa después de procesar el formulario
@@ -165,3 +171,10 @@ def crear_servicio(request):
         form = ServicioForm()
     
     return render(request, 'crear_servicio.html', {'form': form})
+
+
+
+def borrar_servicio(request, pk):
+    servicio_a_borrar = get_object_or_404(Servicio, pk=pk)
+    servicio_a_borrar.delete()
+    return redirect('/empleados/servicios')
